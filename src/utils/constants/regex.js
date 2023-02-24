@@ -1,0 +1,1 @@
+export const onlyLetterAndSpaces = /^[a-zA-Z\s]+$/;

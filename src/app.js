@@ -16,7 +16,7 @@ app.use(json());
 
 app.use("/", authRouter);
 app.use("/urls", urlsRouter);
-app.use("/users", usersRouter);
+app.use("/", usersRouter);
 app.use("/ranking", rankingsRouter);
 
 app.listen(PORT, () => console.log(`Server is listening in PORT: ${PORT}`));
