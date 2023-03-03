@@ -1,7 +1,7 @@
 import db from "../database/database.connection.js";
 
 export async function findAllUrlDataGroupedByUserId() {
-  return await db.query(
+  return db.query(
     `SELECT us.id, us.name,
     COUNT(ur."userId") AS "linksCount",
     COALESCE(SUM(ur."visitCount"),0) AS "visitCount"
