@@ -1,6 +1,10 @@
 import internalServerError from "../utils/functions/internalServerError.js";
 import { nanoid } from "nanoid";
-import { createShortUrl, findUrlById } from "../repositories/url.repository.js";
+import {
+  createShortUrl,
+  findUrlById,
+  updateUrlVisitCountById,
+} from "../repositories/url.repository.js";
 
 export async function create(req, res) {
   const { url } = res.locals.sanitizedParams;
@@ -25,7 +29,7 @@ export async function getById(req, res) {
 
     if (!rowCount) return res.sendStatus(404);
 
-    const {shortUrl, url } = rows[0];
+    const { shortUrl, url } = rows[0];
 
     res.status(200).send({ id, shortUrl, url });
   } catch (error) {
@@ -33,4 +37,16 @@ export async function getById(req, res) {
   }
 }
 
-export default { create, getById};
+export async function getByShortUrl(req, res) {
+  const { id, url } = res.locals.url;
+
+  try {
+    await updateUrlVisitCountById(id);
+
+    res.redirect(url);
+  } catch (error) {
+    internalServerError(res, error);
+  }
+}
+
+export default { create, getById, getByShortUrl };

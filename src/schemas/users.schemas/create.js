@@ -8,7 +8,7 @@ const createUserSchema = Joi.object({
     .messages(handleJoiMessage("name"))
     .required(),
   email: Joi.string()
-    .email({ minDomainSegments: 3, tlds: { allow: ["com", "net", "br"] } })
+    .email()
     .messages(handleJoiMessage("email"))
     .required(),
   password: Joi.string().messages(handleJoiMessage("password")).required(),

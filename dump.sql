@@ -28,7 +28,7 @@ CREATE TABLE public.sessions (
     id integer NOT NULL,
     "userId" integer NOT NULL,
     token text NOT NULL,
-    "createdAt" date DEFAULT now()
+    "createdAt" timestamp without time zone DEFAULT now()
 );
 
 
@@ -59,10 +59,10 @@ ALTER SEQUENCE public.sessions_id_seq OWNED BY public.sessions.id;
 CREATE TABLE public.urls (
     id integer NOT NULL,
     "userId" integer NOT NULL,
-    "shortUrl" character varying(10) NOT NULL,
     url text NOT NULL,
     "visitCount" integer DEFAULT 0 NOT NULL,
-    "createdAt" date DEFAULT now()
+    "shortUrl" character varying(100) NOT NULL,
+    "createdAt" timestamp without time zone DEFAULT now()
 );
 
 
@@ -95,7 +95,7 @@ CREATE TABLE public.users (
     name character varying(80) NOT NULL,
     email character varying(100) NOT NULL,
     password text NOT NULL,
-    "createdAt" date DEFAULT now()
+    "createdAt" timestamp without time zone DEFAULT now()
 );
 
 
@@ -144,39 +144,48 @@ ALTER TABLE ONLY public.users ALTER COLUMN id SET DEFAULT nextval('public.users_
 -- Data for Name: sessions; Type: TABLE DATA; Schema: public; Owner: -
 --
 
+INSERT INTO public.sessions VALUES (1, 7, 'b322ae9a-6437-4987-8f59-f08a62b33f28', '2023-03-03 02:41:24.907269');
 
 
 --
 -- Data for Name: urls; Type: TABLE DATA; Schema: public; Owner: -
 --
 
+INSERT INTO public.urls VALUES (1, 7, 'https://br.pinterest.com/claudiaoliv0170/gatinhos-fofos/', 0, 'UwFdb77MUDBgAY0L5h8-x', '2023-03-03 02:41:24.907269');
+INSERT INTO public.urls VALUES (2, 7, 'https://br.pinterest.com/claudiaoliv0170/gatinhos-fofos/', 0, '8VJO03ceqWIBngmXhZq_-', '2023-03-03 02:41:24.907269');
+INSERT INTO public.urls VALUES (3, 7, 'https://br.pinterest.com/claudiaoliv0170/gatinhos-fofos/', 0, '6NLiPEl5wn_i7ecM_9B8G', '2023-03-03 02:41:24.907269');
 
 
 --
 -- Data for Name: users; Type: TABLE DATA; Schema: public; Owner: -
 --
 
+INSERT INTO public.users VALUES (2, 'João', 'joao@driven.com.br', '$2b$10$GClapHiSDJgDJ3QEIOcgfuJVO960KqiU3H3tu373bGzPbt0IxDVEK', '2023-03-03 02:41:24.907269');
+INSERT INTO public.users VALUES (4, 'João', 'joaaao@driven.com.br', '$2b$10$dCRJfz3WUrI5X54QRNSZeegRZLfapbORuGQ7mgnUhLSeB7oKOkfOq', '2023-03-03 02:41:24.907269');
+INSERT INTO public.users VALUES (5, 'João', 'joaqweo@driven.com.br', '$2b$10$XSt.r6/BYlQAHHdobJBrs.aDeDo9pMVaHKOHjk7sN/tt6M5NZKHh6', '2023-03-03 02:41:24.907269');
+INSERT INTO public.users VALUES (6, 'João', 'joaqwzeo@driven.com.br', '$2b$10$CkWNopIDN6B7TLc8JVDHluhxRVeXeSRXbBC7XC9AWZ3vbXJi0fksW', '2023-03-03 02:41:24.907269');
+INSERT INTO public.users VALUES (7, 'João', 'joaqqwewzeo@driven.com.br', '$2b$10$ZYBlCy52pmyBmoDy71RTPOLqcDG4/.5oof/Hg8slzpsdYkYBmWe9S', '2023-03-03 02:41:24.907269');
 
 
 --
 -- Name: sessions_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
 --
 
-SELECT pg_catalog.setval('public.sessions_id_seq', 1, false);
+SELECT pg_catalog.setval('public.sessions_id_seq', 1, true);
 
 
 --
 -- Name: urls_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
 --
 
-SELECT pg_catalog.setval('public.urls_id_seq', 1, false);
+SELECT pg_catalog.setval('public.urls_id_seq', 3, true);
 
 
 --
 -- Name: users_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
 --
 
-SELECT pg_catalog.setval('public.users_id_seq', 1, false);
+SELECT pg_catalog.setval('public.users_id_seq', 7, true);
 
 
 --
@@ -193,14 +202,6 @@ ALTER TABLE ONLY public.sessions
 
 ALTER TABLE ONLY public.urls
     ADD CONSTRAINT urls_pkey PRIMARY KEY (id);
-
-
---
--- Name: urls urls_shortUrl_key; Type: CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY public.urls
-    ADD CONSTRAINT "urls_shortUrl_key" UNIQUE ("shortUrl");
 
 
 --
