@@ -22,3 +22,7 @@ export async function updateUrlVisitCountById(id) {
     [id]
   );
 }
+
+export async function deleteUrlById(id) {
+  return await db.query(`DELETE FROM urls WHERE id = $1`, [id]);
+}

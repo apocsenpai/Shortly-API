@@ -2,6 +2,7 @@ import internalServerError from "../utils/functions/internalServerError.js";
 import { nanoid } from "nanoid";
 import {
   createShortUrl,
+  deleteUrlById,
   findUrlById,
   updateUrlVisitCountById,
 } from "../repositories/url.repository.js";
@@ -49,4 +50,16 @@ export async function getByShortUrl(req, res) {
   }
 }
 
-export default { create, getById, getByShortUrl };
+export async function deleteById(req, res) {
+  const { id } = res.locals.sanitizedParams;
+
+  try {
+    await deleteUrlById(id);
+
+    res.sendStatus(204);
+  } catch (error) {
+    internalServerError(res, error);
+  }
+}
+
+export default { create, getById, getByShortUrl, deleteById };
