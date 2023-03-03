@@ -11,3 +11,15 @@ export async function createUser({ name, email, hashedPassword }) {
     [name, email, hashedPassword]
   );
 }
+
+export async function findUserAndUrlByUserId(id) {
+  return await db.query(
+    `
+  SELECT us.id, us.name, ur.id AS "urlId", ur.*
+  FROM users us
+  INNER JOIN urls ur ON us.id = ur."userId"
+  WHERE us.id = $1
+  `,
+    [id]
+  );
+}
