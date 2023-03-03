@@ -7,3 +7,7 @@ export async function createSession({ userId, token }) {
     [userId, token]
   );
 }
+
+export async function findSessionByToken(token) {
+  return await db.query(`SELECT * FROM sessions WHERE token = $1`, [token]);
+}
