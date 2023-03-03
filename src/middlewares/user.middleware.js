@@ -1,7 +1,7 @@
 import { findUserByEmail } from "../repositories/user.repository.js";
 import internalServerError from "../utils/functions/internalServerError.js";
 
-export async function checkUserEmail(req, res, next) {
+export async function checkUserEmailAlreadyExists(req, res, next) {
   const { email } = res.locals.sanitizedParams;
 
   try {
