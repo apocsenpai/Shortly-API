@@ -14,7 +14,7 @@ router.post(
   urlController.create
 );
 
-router.get("/:id", validateSchema(idSchema));
+router.get("/:id", validateSchema(idSchema), urlController.getById);
 router.get("/open/:shortUrl");
 
 router.delete("/:id", validateSchema(idSchema));

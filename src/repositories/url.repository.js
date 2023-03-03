@@ -7,3 +7,7 @@ export async function createShortUrl({ userId, url, shortUrl }) {
     [userId, url, shortUrl]
   );
 }
+
+export async function findUrlById(id) {
+  return await db.query(`SELECT * FROM urls WHERE id = $1`, [id]);
+}
