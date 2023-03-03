@@ -1,6 +1,6 @@
 import { Router } from "express";
-import { validateSchema } from "../middlewares/global.middleware";
-import signInSchema from "../schemas/auth.schemas/signIn";
+import { validateSchema } from "../middlewares/global.middleware.js";
+import signInSchema from "../schemas/auth.schemas/signIn.js";
 
 const router = Router("/");
 

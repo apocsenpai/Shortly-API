@@ -1,10 +1,10 @@
 import express, { json } from "express";
 import dotenv from "dotenv";
 import cors from "cors";
-import { authRouter } from "./routers/auth.router";
-import { urlsRouter } from "./routers/urls.router";
-import { usersRouter } from "./routers/users.router";
-import { rankingsRouter } from "./routers/rankings.router";
+import { authRouter } from "./routes/auth.route.js";
+import { urlsRouter } from "./routes/urls.route.js";
+import { usersRouter } from "./routes/users.route.js";
+import { rankingsRouter } from "./routes/rankings.route.js";
 
 dotenv.config();
 

@@ -1,13 +1,13 @@
-import sanitizeObject from "../utils/functions/sanitizeObject";
+import sanitizeObject from "../utils/functions/sanitizeObject.js";
 
 export function validateSchema(schema) {
   return (req, res, next) => {
-    res.sanitizedParams = sanitizeObject({
+    res.locals.sanitizedParams = sanitizeObject({
       ...req.body,
       ...req.query,
       ...req.params,
     });
-    const { error } = schema.validate(res.sanitizedParams, {
+    const { error } = schema.validate(res.locals.sanitizedParams, {
       abortEarly: false,
     });
 
